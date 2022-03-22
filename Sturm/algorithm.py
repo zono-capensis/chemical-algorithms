@@ -22,6 +22,8 @@ print(interval)
 derivative = functions.find_derivative(poly)
 print(derivative)
 
+p2 = functions.synth_division(poly.list_of_coefficients, derivative.list_of_coefficients)
+print(p2)
 
 
 
