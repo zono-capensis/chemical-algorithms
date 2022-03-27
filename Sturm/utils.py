@@ -3,17 +3,6 @@ class Polynomial:
     def __init__(self,degree=0,list_of_coefficients=[]):
         self.degree = degree
         self.list_of_coefficients = list_of_coefficients
-
-    def find_root_interval(self):
-        numerator=0
-        for addend in self.list_of_coefficients[1::]:
-            numerator+= abs(addend)
-        temp_sup = numerator / (abs(self.list_of_coefficients[0]))
-        temp_inf = temp_sup * (-1)
-        sup = max(temp_sup,1)
-        inf = min(temp_inf, 1)
-        return (inf,sup)
-
     def __str__(self):
         polynomial=""
         for i in range(len(self.list_of_coefficients)):
@@ -37,3 +26,17 @@ class Polynomial:
                 polynomial += sign + coefficient + variable
 
         return polynomial
+
+    def find_root_interval(self):
+        numerator=0
+        for addend in self.list_of_coefficients[1::]:
+            numerator+= abs(addend)
+        temp_sup = numerator / (abs(self.list_of_coefficients[0]))
+        temp_inf = temp_sup * (-1)
+        sup = max(temp_sup,1)
+        inf = min(temp_inf, 1)
+        return (inf,sup)
+
+    def evaluation_to_infinity(self,is_positive=True):
+        infinity = float('inf') if is_positive else float('-inf')
+        return self.list_of_coefficients[0]*(infinity**self.degree)
