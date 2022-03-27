@@ -18,7 +18,7 @@ divisor = functions.find_derivative(dividend)
 
 coefficients_of_remainder = functions.synth_division(dividend.list_of_coefficients, divisor.list_of_coefficients)
 current_degree = divisor.degree - 1
-remainder = Polynomial(current_degree,coefficients_of_remainder)
+remainder = Polynomial(current_degree,[-coefficient for coefficient in coefficients_of_remainder])
 
 sturm_sequence = [dividend,divisor,remainder]
 
@@ -27,8 +27,8 @@ while current_degree > 0:
     divisor = remainder
     
     coefficients_of_remainder = functions.synth_division(dividend.list_of_coefficients, divisor.list_of_coefficients)
-    current_degree = divisor.degree - 1
-    remainder = Polynomial(current_degree,coefficients_of_remainder)
+    current_degree = divisor.degree - 1    
+    remainder = Polynomial(current_degree,[-coefficient for coefficient in coefficients_of_remainder])
     sturm_sequence.append(remainder)
 
 for poly in sturm_sequence:
